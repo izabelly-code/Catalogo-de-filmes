@@ -1,0 +1,33 @@
+<div class="login-container">
+	<form class="login-form" (ngSubmit)="onSubmit()" novalidate>
+		<h2>Cadastro</h2>
+
+		<!-- Avatar / Foto do perfil -->
+		<div class="avatar-wrapper">
+		  <div class="avatar-placeholder" *ngIf="!profileImageDataUrl" (click)="triggerFileInput()">
+		    <span>+</span>
+		  </div>
+		  <img *ngIf="profileImageDataUrl" [src]="profileImageDataUrl" class="avatar-preview" alt="Foto de perfil" (click)="triggerFileInput()" />
+		  <input #fileInput type="file" accept="image/*" capture="environment" (change)="onFileSelected($event)" hidden />
+		  <div class="avatar-actions">
+		    <button type="button" class="small" (click)="triggerFileInput()">Upload</button>
+			<button type="button" class="small" (click)="irCamera()">Câmera</button>	
+		  </div>
+		</div>
+
+		<label for="name">Nome</label>
+		<input id="name" name="name" type="text" required placeholder="Seu nome" [(ngModel)]="name" />
+
+		<label for="email">Email</label>
+		<input id="email" name="email" type="email" required placeholder="seu@email.com" [(ngModel)]="email" />
+
+		<label for="password">Senha</label>
+		<input id="password" name="password" type="password" required placeholder="••••••••" [(ngModel)]="password" minlength="6" />
+
+		<button type="submit">Criar conta</button>
+
+		<p class="signup-note">
+			Já possui conta? Faça login <a (click)="irLogin()">aqui</a>
+		</p>
+	</form>
+</div>

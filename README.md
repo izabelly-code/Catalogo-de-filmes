@@ -2,6 +2,8 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.1.0.
 
+[Video demonstrativo](https://youtu.be/W5cruvLzTYI)
+
 <p style="display:flex; gap:12px; align-items:flex-start; flex-wrap:wrap">
   <img src="https://github.com/user-attachments/assets/c4d1f23e-3419-4e77-a00c-18590419b2b4" alt="screenshot 1" width="320" />
   <img src="https://github.com/user-attachments/assets/a87a709c-0b70-449a-a983-19ac7f796d6a" alt="screenshot 2" width="320" />

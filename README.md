@@ -1,6 +1,10 @@
 # MovieCataloger
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.1.0.
+<img width="405" height="745" alt="image" src="https://github.com/user-attachments/assets/c4d1f23e-3419-4e77-a00c-18590419b2b4" />
+<img width="430" height="762" alt="image" src="https://github.com/user-attachments/assets/a87a709c-0b70-449a-a983-19ac7f796d6a" />
+
+
 
 ## Development server
 

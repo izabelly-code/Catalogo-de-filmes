@@ -1,5 +1,5 @@
 <div class="login-container">
-  <form class="login-form" (ngSubmit)="onSubmit()" novalidate>
+  <form class="login-form" (ngSubmit)="onSubmit()" #loginForm="ngForm" novalidate>
     <h2>Login</h2>
 
     <label for="email">Email</label>
@@ -7,10 +7,10 @@
       id="email"
       name="email"
       type="email"
+      [(ngModel)]="email" 
       required
       placeholder="seu@email.com"
       autocomplete="email"
-      ngModel
     />
 
     <label for="password">Senha</label>
@@ -18,10 +18,10 @@
       id="password"
       name="password"
       type="password"
+      [(ngModel)]="password"
       required
       placeholder="••••••••"
       autocomplete="current-password"
-      ngModel
       minlength="6"
     />
 

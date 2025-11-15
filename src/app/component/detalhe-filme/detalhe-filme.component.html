@@ -1,0 +1,41 @@
+<div class="detalhes">
+	<div *ngIf="loading">Carregando detalhes...</div>
+
+	<div *ngIf="!loading && details">
+		<div class="poster">
+			<img *ngIf="details.primaryImage?.url; else semImagem" [src]="details.primaryImage?.url" [alt]="details.primaryTitle || 'Poster'" />
+			<ng-template #semImagem>
+				<div class="no-image">Sem imagem disponível</div>
+			</ng-template>
+		</div>
+
+		<div class="info">
+			<h2>{{ details.primaryTitle }}</h2>
+			<p *ngIf="details.startYear">Ano: {{ details.startYear }}</p>
+			<p *ngIf="details.plot">{{ details.plot }}</p>
+			<p *ngIf="details.rating">Avaliação: {{ details.rating.aggregateRating || 'N/A' }} ({{ details.rating.voteCount || 0 }} votos)</p>
+
+			<div class="rating" aria-label="Avaliação do usuário">
+				<div class="stars">
+					<button *ngFor="let s of stars"
+						class="star"
+						[type]="'button'"
+						[attr.aria-label]="'Avaliar ' + s + ' de 5'"
+						[class.filled]="(hoverRating ? s <= hoverRating : s <= (userRating || 0))"
+						(click)="setRating(s)"
+						(mouseenter)="setHover(s)"
+						(mouseleave)="clearHover()">
+						★
+					</button>
+				</div>
+				<div class="rating-text">Sua avaliação: {{ userRating || 0 }} / 5</div>
+				<!-- Favorite heart -->
+				<button class="enviar-avaliacao" type="button" (click)="toggleFavorite()">
+					<span >Enviar avaliação</span>
+				</button>
+			</div>
+		</div>
+	</div>
+
+	<div *ngIf="!loading && !details">Detalhes não encontrados.</div>
+</div>

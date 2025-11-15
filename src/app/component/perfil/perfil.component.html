@@ -1,0 +1,20 @@
+<div class="login-container">
+	<div class="login-form">
+		<h2>Meu Perfil</h2>
+
+		<div class="avatar-wrapper">
+			<img *ngIf="profileImage; else placeholder" [src]="profileImage" class="avatar-preview" alt="Foto de perfil" />
+			<ng-template #placeholder>
+				<div class="avatar-placeholder"><span>?</span></div>
+			</ng-template>
+		</div>
+
+		<label for="name">Nome</label>
+		<input id="name" type="text" [value]="name" readonly />
+
+		<label for="email">Email</label>
+		<input id="email" type="email" [value]="email" readonly />
+
+		<button type="button" (click)="irLogin()">Sair</button>
+	</div>
+</div>

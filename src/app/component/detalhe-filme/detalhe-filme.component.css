@@ -1,0 +1,104 @@
+:host {
+  display: block; /* allow height to apply */
+  min-height: 100dvh; /* prefer dynamic viewport on modern browsers */
+  min-height: 100svh;
+  min-height: 100vh; /* fallback */
+  box-sizing: border-box;
+  padding: 20px; /* small padding inside the fullscreen area */
+  font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  /* background moved to host so it fills the whole page */
+  background: radial-gradient(ellipse at 10% 10%, rgba(255,255,255,0.02) 0%, transparent 20%),
+              linear-gradient(180deg, #0b0f1a 0%, #06101a 50%, #000000 100%);
+  position: relative;
+  overflow: hidden;
+}
+.detalhes {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	padding: 12px 16px;
+	color: #eee;
+	align-items: center; /* centraliza horizontalmente o conteúdo */
+}
+.poster {
+	display: flex;
+	justify-content: center; /* centraliza a imagem dentro do bloco */
+	width: 100%;
+}
+.poster img {
+	/* Ocupa 30% da altura da viewport */
+	height: 30vh;
+	max-height: 30vh;
+	width: auto;
+	max-width: 420px;
+	object-fit: cover; /* preenche o espaço mantendo proporção */
+	border-radius: 8px;
+	display: block;
+	margin: 0 auto; /* garante centralização */
+}
+.no-image {
+	width: 100%;
+	max-width: 420px;
+	height: 300px;
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	background: rgba(255,255,255,0.02);
+	border-radius:8px;
+	color:#ccc;
+}
+.info h2 { margin: 8px 0; }
+.info p { margin: 6px 0; color:#ddd }
+
+/* Rating stars */
+.rating {
+	margin-top: 12px;
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	flex-wrap: wrap;
+}
+.stars {
+	display: flex;
+	gap: 6px;
+}
+.star {
+	background: transparent;
+	border: none;
+	color: rgba(255,255,255,0.45);
+	font-size: 28px;
+	line-height: 1;
+	cursor: pointer;
+	padding: 4px;
+}
+.star.filled {
+	color: #ffca28; /* gold */
+	text-shadow: 0 1px 0 rgba(0,0,0,0.4);
+}
+.star:focus {
+	outline: 2px solid rgba(255,202,40,0.25);
+	outline-offset: 2px;
+}
+.rating-text { color: #ddd; font-size: 14px; }
+
+/* Favorite heart */
+.enviar-avaliacao {
+	padding: 10px 14px;
+	border-radius: 8px;
+	border: none;
+	background: linear-gradient(90deg, #e50914, #b31217);
+	color: #fff;
+	cursor: pointer;
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+}
+.enviar-avaliacao span {
+	font-size: 16px;
+	color: inherit;
+	transition: transform 120ms ease;
+}
+.enviar-avaliacao:focus {
+	outline: 2px solid rgba(0,0,0,0.12);
+	outline-offset: 2px;
+}

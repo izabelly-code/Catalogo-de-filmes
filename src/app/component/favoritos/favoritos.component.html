@@ -1,0 +1,28 @@
+<div class="favoritos-container">
+	<h2>Meus Favoritos</h2>
+
+	<div *ngIf="loading">Carregando favoritos...</div>
+	<div *ngIf="!loading && noFavorites">Nenhum favorito encontrado.</div>
+
+	<div class="cards" *ngIf="!loading && favorites.length">
+		<div class="card" *ngFor="let movie of favorites">
+			<img [src]="movie.primaryImage?.url || ''" alt="{{ movie.primaryTitle || 'Filme' }}" />
+			<div class="card-body">
+				<h3>{{ movie.primaryTitle }}</h3>
+				<p>{{ movie.startYear }}</p>
+				<p class="minha-avaliacao">
+				<strong>Minha avaliação:</strong>
+				<span *ngIf="getUserRating(movie) != null; else noRating">
+					<ng-container *ngFor="let s of [1,2,3,4,5]">
+					<span class="star" [class.filled]="s <= (getUserRating(movie) ?? 0)">★</span>
+					</ng-container>
+					<span class="rating-num">({{ getUserRating(movie) }})</span>
+				</span>
+				<ng-template #noRating>
+					<span class="no-rating">Sem avaliação</span>
+				</ng-template>
+				</p>
+			</div>
+		</div>
+	</div>
+</div>

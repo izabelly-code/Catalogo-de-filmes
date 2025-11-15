@@ -1,0 +1,43 @@
+<nav class="navbar">
+  <div class="menu-icon" (click)="toggleMenu()">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+  </div>
+
+  <ul class="menu" [class.active]="menuAberto">
+    <a (click)="fecharMenu('/perfil')">👤 Perfil</a>
+    <a (click)="fecharMenu('/favoritos')">⭐ Favoritos</a>
+  </ul>
+</nav>
+
+<div class="container">
+<!-- Search bar abaixo do nav -->
+    <div class="search-bar">
+    <input
+        type="text"
+        placeholder="Pesquisar filmes..."
+        [(ngModel)]="searchTerm"
+        (input)="onSearch()"
+        aria-label="Pesquisar filmes"
+    />
+    <button type="button" (click)="onSearch()">Buscar</button>
+    </div>
+
+    <!-- Results -->
+    <div class="results">
+    <div *ngIf="loading" class="loading">Carregando...</div>
+
+    <div *ngIf="!loading && titles.length === 0" class="no-results">Nenhum resultado</div>
+
+    <div class="cards" *ngIf="!loading && titles.length > 0">
+        <button class="card" *ngFor="let t of titles" (click)="selectTitle(t)">
+        <img *ngIf="t.primaryImage?.url; else noImage" [src]="t.primaryImage?.url" alt="{{t.originalTitle}}" />
+        <ng-template #noImage>
+            <div class="no-image">Sem imagem</div>
+        </ng-template>
+        <div class="card-title">{{ t.originalTitle }}</div>
+        </button>
+    </div>
+    </div>
+</div>

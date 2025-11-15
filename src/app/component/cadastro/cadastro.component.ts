@@ -2,7 +2,7 @@ import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
   import { RouterModule, Router, ActivatedRoute } from '@angular/router';
-import { StorageService } from '../../service/storage.service';
+import { StorageService } from '../../services/storage.service';
 
 @Component({
   selector: 'app-cadastro',
@@ -39,6 +39,7 @@ export class CadastroComponent implements OnInit {
       email: this.email,
       password: this.password,
       profileImage: this.profileImageDataUrl,
+      favorites: []
     };
 
     // salvar localmente em uma lista simples de usuários

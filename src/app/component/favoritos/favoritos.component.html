@@ -6,10 +6,10 @@
 
 	<div class="cards" *ngIf="!loading && favorites.length">
 		<div class="card" *ngFor="let movie of favorites">
-			<img [src]="movie.primaryImage?.url || ''" alt="{{ movie.primaryTitle || 'Filme' }}" />
+			<img [src]="movie.Poster" alt="{{ movie.Title }}" />
 			<div class="card-body">
-				<h3>{{ movie.primaryTitle }}</h3>
-				<p>{{ movie.startYear }}</p>
+				<h3>{{ movie.Title }}</h3>
+				<p>{{ movie.Year }}</p>
 				<p class="minha-avaliacao">
 				<strong>Minha avaliação:</strong>
 				<span *ngIf="getUserRating(movie) != null; else noRating">

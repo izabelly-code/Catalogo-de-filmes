@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { ImdbService } from '../../services/imdb.service';
-import { MovieDetails } from '../../models/movie.model';
+import { OmdbService } from '../../services/imdb.service';
+import { OmdbMovieDetails } from '../../models/movie.model';
 import { StorageService } from '../../services/storage.service';
 
 @Component({
@@ -14,7 +14,7 @@ import { StorageService } from '../../services/storage.service';
 })
 export class DetalheFilmeComponent implements OnInit {
   id: string | null = null;
-  details: MovieDetails | null = null;
+  details: OmdbMovieDetails | null = null;
   loading = false;
   userRating: number | null = null;
   hoverRating = 0;
@@ -24,7 +24,7 @@ export class DetalheFilmeComponent implements OnInit {
 
   constructor(
     private readonly route: ActivatedRoute,
-    private readonly imdbService: ImdbService,
+    private readonly omdbService: OmdbService,
     private readonly storage: StorageService
   ) {}
 
@@ -32,7 +32,7 @@ export class DetalheFilmeComponent implements OnInit {
     this.id = this.route.snapshot.queryParamMap.get('id');
     if (this.id) {
       this.loading = true;
-      this.imdbService.buscarDetalhes(this.id).subscribe({
+      this.omdbService.buscarDetalhes(this.id).subscribe({
         next: (d) => {
           this.details = d;
           this.checkFavorited();

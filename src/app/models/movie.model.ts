@@ -1,32 +1,47 @@
-export interface PrimaryImage {
-  url: string;
-  width?: number;
-  height?: number;
+export interface OmdbSearchItem {
+  Title: string;
+  Year: string;
+  imdbID: string;
+  Type: string;
+  Poster: string;
 }
 
-export interface Rating {
-  aggregateRating?: number;
-  voteCount?: number;
+export interface OmdbSearchResponse {
+  Search: OmdbSearchItem[];
+  totalResults: string;
+  Response: string; // "True" ou "False"
+  Error?: string;
 }
 
-export interface TitleItem {
-  id: string;
-  originalTitle?: string;
-  primaryImage?: PrimaryImage;
+export interface OmdbMovieDetails {
+  Title: string;
+  Year: string;
+  Rated: string;
+  Released: string;
+  Runtime: string;
+  Genre: string;
+  Director: string;
+  Writer: string;
+  Actors: string;
+  Plot: string;
+  Language: string;
+  Country: string;
+  Awards: string;
+  Poster: string;
+
+  Ratings: Array<{
+    Source: string;
+    Value: string;
+  }>;
+
+  Metascore: string;
+  imdbRating: string;
+  imdbVotes: string;
+  imdbID: string;
+  Type: string;
+  DVD: string;
+  BoxOffice: string;
+  Production: string;
+  Website: string;
+  Response: string; // "True" ou "False"
 }
-
-export interface SearchResponse {
-  titles: TitleItem[];
-  // outros campos que a API possa retornar podem ser adicionados aqui
-}
-
-export interface MovieDetails {
-  primaryTitle?: string;
-  startYear?: number;
-  primaryImage?: PrimaryImage;
-  plot?: string;
-  rating?: Rating;
-  // adicionar campos conforme necessário
-}
-
-

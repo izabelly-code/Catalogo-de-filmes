@@ -1,3 +1,18 @@
+
+:host {
+  display: block; /* allow height to apply */
+  min-height: 100dvh; /* prefer dynamic viewport on modern browsers */
+  min-height: 100svh;
+  min-height: 100vh; /* fallback */
+  box-sizing: border-box;
+  padding: 20px; /* small padding inside the fullscreen area */
+  font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  /* background moved to host so it fills the whole page */
+  background: radial-gradient(ellipse at 10% 10%, rgba(255,255,255,0.02) 0%, transparent 20%),
+              linear-gradient(180deg, #0b0f1a 0%, #06101a 50%, #000000 100%);
+  position: relative;
+  overflow: hidden;
+}
 .favoritos-container {
 	padding: 16px;
 }

@@ -3,17 +3,17 @@
 
 	<div *ngIf="!loading && details">
 		<div class="poster">
-			<img *ngIf="details.primaryImage?.url; else semImagem" [src]="details.primaryImage?.url" [alt]="details.primaryTitle || 'Poster'" />
+			<img *ngIf="details.Poster; else semImagem" [src]="details.Poster" [alt]="details.Title" />
 			<ng-template #semImagem>
 				<div class="no-image">Sem imagem disponível</div>
 			</ng-template>
 		</div>
 
 		<div class="info">
-			<h2>{{ details.primaryTitle }}</h2>
-			<p *ngIf="details.startYear">Ano: {{ details.startYear }}</p>
-			<p *ngIf="details.plot">{{ details.plot }}</p>
-			<p *ngIf="details.rating">Avaliação: {{ details.rating.aggregateRating || 'N/A' }} ({{ details.rating.voteCount || 0 }} votos)</p>
+			<h2>{{ details.Title }}</h2>
+			<p *ngIf="details.Year">Ano: {{ details.Year }}</p>
+			<p *ngIf="details.Plot">{{ details.Plot }}</p>
+			<p *ngIf="details.imdbRating">Avaliação: {{ details.imdbRating || 'N/A' }} ({{ details.imdbVotes || 0 }} votos)</p>
 
 			<div class="rating" aria-label="Avaliação do usuário">
 				<div class="stars">

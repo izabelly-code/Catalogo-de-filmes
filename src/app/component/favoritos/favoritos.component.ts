@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { ImdbService } from '../../services/imdb.service';
+import { OmdbService } from '../../services/imdb.service';
 import { StorageService } from '../../services/storage.service';
-import { MovieDetails } from '../../models/movie.model';
+import { OmdbMovieDetails } from '../../models/movie.model';
 import { forkJoin, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
@@ -15,12 +15,12 @@ import { catchError } from 'rxjs/operators';
   styleUrls: ['./favoritos.component.css']
 })
 export class FavoritosComponent implements OnInit {
-  favorites: MovieDetails[] = [];
+  favorites: OmdbMovieDetails[] = [];
   loading = false;
   noFavorites = false;
 
   constructor(
-    private readonly imdbService: ImdbService,
+    private readonly omdbService: OmdbService,
     private readonly storage: StorageService
   ) {}
 
@@ -70,21 +70,21 @@ export class FavoritosComponent implements OnInit {
 
     this.loading = true;
     const calls = ids.map(id =>
-      this.imdbService.buscarDetalhes(id).pipe(
+      this.omdbService.buscarDetalhes(id).pipe(
         catchError(() => of(null))
       )
     );
 
     forkJoin(calls).subscribe(results => {
       // associar o id original (ids) ao objeto de detalhes para permitir ações (remover, link)
-      const mapped: MovieDetails[] = results
+      const mapped: OmdbMovieDetails[] = results
           .map((res, i) => {
             if (!res) return null;
             // anexa um campo não tipado com o id do imdb usado e a avaliação do usuário
             const rating = favObjs[i]?.rating;
-            return { ...(res as any), _imdbId: ids[i], _userRating: rating } as MovieDetails & { _imdbId?: string; _userRating?: number };
+            return { ...(res as any), _imdbId: ids[i], _userRating: rating } as OmdbMovieDetails & { _imdbId?: string; _userRating?: number };
           })
-          .filter(Boolean) as MovieDetails[];
+          .filter(Boolean) as OmdbMovieDetails[];
 
       this.favorites = mapped;
       this.noFavorites = this.favorites.length === 0;
@@ -92,11 +92,11 @@ export class FavoritosComponent implements OnInit {
     });
   }
 
-  getImdbId(movie: MovieDetails): string {
+  getImdbId(movie: OmdbMovieDetails): string {
     return ((movie as any)?._imdbId) || '';
   }
 
-  getUserRating(movie: MovieDetails): number | undefined {
+  getUserRating(movie: OmdbMovieDetails): number | undefined {
     return (movie as any)?._userRating;
   }
 

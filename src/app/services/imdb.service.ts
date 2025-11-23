@@ -1,27 +1,28 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { SearchResponse, MovieDetails } from '../models/movie.model';
+import { OmdbSearchResponse, OmdbMovieDetails } from '../models/movie.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ImdbService {
+export class OmdbService {
 
-  private readonly API_URL = 'https://api.imdbapi.dev/';
+  private readonly API_URL = 'https://www.omdbapi.com/';
+  private readonly API_KEY = '6b775eac'; // sua API key
 
   constructor(private readonly http: HttpClient) {}
 
-  // Buscar filmes pelo título (Batman, Matrix, etc.)
-  buscarFilmes(termo: string, page: number = 1): Observable<SearchResponse> {
+  // Buscar filmes pelo título
+  buscarFilmes(termo: string): Observable<OmdbSearchResponse> {
     const query = encodeURIComponent((termo || '').trim());
-    const url = `${this.API_URL}search/titles?query=${query}&page=${page}`;
-    return this.http.get<SearchResponse>(url);
+    const url = `${this.API_URL}?apikey=${this.API_KEY}&s=${query}`;
+    return this.http.get<OmdbSearchResponse>(url);
   }
 
   // Buscar detalhes por IMDb ID
-  buscarDetalhes(imdbId: string): Observable<MovieDetails> {
-    const url = `${this.API_URL}titles/${imdbId}`;
-    return this.http.get<MovieDetails>(url);
+  buscarDetalhes(imdbId: string): Observable<OmdbMovieDetails> {
+    const url = `${this.API_URL}?apikey=${this.API_KEY}&i=${imdbId}&plot=full`;
+    return this.http.get<OmdbMovieDetails>(url);
   }
 }

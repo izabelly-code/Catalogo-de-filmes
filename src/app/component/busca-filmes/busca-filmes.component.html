@@ -12,13 +12,11 @@
 </nav>
 
 <div class="container">
-<!-- Search bar abaixo do nav -->
     <div class="search-bar">
     <input
         type="text"
         placeholder="Pesquisar filmes..."
         [(ngModel)]="searchTerm"
-        (input)="onSearch()"
         aria-label="Pesquisar filmes"
     />
     <button type="button" (click)="onSearch()">Buscar</button>
@@ -32,11 +30,11 @@
 
     <div class="cards" *ngIf="!loading && titles.length > 0">
         <button class="card" *ngFor="let t of titles" (click)="selectTitle(t)">
-        <img *ngIf="t.primaryImage?.url; else noImage" [src]="t.primaryImage?.url" alt="{{t.originalTitle}}" />
+        <img *ngIf="t.Poster; else noImage" [src]="t.Poster" alt="{{t.Title}}" />
         <ng-template #noImage>
             <div class="no-image">Sem imagem</div>
         </ng-template>
-        <div class="card-title">{{ t.originalTitle }}</div>
+        <div class="card-title">{{ t.Title }}</div>
         </button>
     </div>
     </div>
